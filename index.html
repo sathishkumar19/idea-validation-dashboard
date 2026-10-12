@@ -811,16 +811,17 @@ body {
   line-height: 1.5;
 }
 
-/* ── VOTE WIDGET (in card) ───────────────────── */
-.vote-row {
+/* ── VOTE STRIP (below card summary, outside toggle) ── */
+.vote-strip {
+  padding: 8px 20px 8px 76px;
+  border-top: 1px solid var(--border);
+  background: var(--surf);
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--border-hi);
   flex-wrap: wrap;
 }
+@media (max-width: 420px) { .vote-strip { padding-left: 20px; } }
 .vote-lbl {
   font: 700 10px var(--ff-b);
   letter-spacing: 0.08em;
@@ -1402,11 +1403,18 @@ function buildCard(idea) {
           </div>
           <span class="sbar-num" style="color:${cc}">${idea.fs}/45</span>
         </div>
+        <div class="sbar-row" id="vsbar_${idea.id}">
+          <span class="sbar-lbl" style="color:var(--invest)">Vote</span>
+          <div class="sbar-track">
+            <div class="sbar-fill" id="vsbar_fill_${idea.id}" style="width:0%;background:var(--invest)"></div>
+          </div>
+          <span class="sbar-num" id="vsbar_num_${idea.id}" style="color:var(--fg-3)">—/5</span>
+        </div>
       </div>
-      <div class="vote-row" id="vrow_${idea.id}"></div>
     </div>
     <div class="chevron">▾</div>
   </div>
+  <div class="vote-strip" id="vrow_${idea.id}"></div>
   <div class="detail-wrap">
     <div class="detail-inner">
       <div class="detail">
@@ -1529,33 +1537,41 @@ function buildVoteRow(ideaId) {
   const myVote = currentFounder ? (v[ideaId]?.[currentFounder] || 0) : 0;
   const { avg, count, voters } = getVoteStats(ideaId);
 
-  const btns = [1,2,3,4,5].map(i => {
-    const labels = ['','Nope','Meh','Maybe','Likely','Let's go!'];
-    return `<button class="vote-btn${myVote===i?' mine':''}"
+  const labels = ['','Nope','Meh','Maybe','Likely','Let\'s go!'];
+  const btns = [1,2,3,4,5].map(i =>
+    `<button class="vote-btn${myVote===i?' mine':''}"
       onclick="castVote(${ideaId},${i})"
-      title="${labels[i]}"
-      ${!currentFounder ? 'disabled' : ''}>${i}</button>`;
-  }).join('');
-
-  const avgDisplay = count
-    ? `<div class="vote-avg-wrap"><span class="vote-avg-n">${avg.toFixed(1)}</span><span class="vote-avg-d">${count}/5 voted</span></div>`
-    : `<div class="vote-avg-wrap"><span class="vote-avg-n" style="color:var(--fg-3)">—</span><span class="vote-avg-d">no votes</span></div>`;
+      title="${i} — ${labels[i]}"
+      ${!currentFounder ? 'disabled' : ''}>${i}</button>`
+  ).join('');
 
   const avatars = FOUNDERS.map(f => {
     const hasVoted = voters.includes(f);
     const fv = v[ideaId]?.[f];
-    return `<span class="fav${hasVoted?' voted':''}" title="${f}: ${hasVoted ? fv+'/5' : 'not voted'}">${f[0]}</span>`;
+    return `<span class="fav${hasVoted?' voted':''}" title="${f}: ${hasVoted ? fv+'/5' : 'not voted yet'}">${f[0]}</span>`;
   }).join('');
+
+  const noFounderHint = !currentFounder
+    ? `<span class="vote-nf">Pick your name above to vote</span>` : '';
 
   return `<span class="vote-lbl">Hunch</span>
     <div class="vote-btns">${btns}</div>
-    ${avgDisplay}
-    <div class="vote-founders">${avatars}</div>`;
+    <div class="vote-founders">${avatars}</div>
+    ${noFounderHint}`;
 }
 
 function refreshVoteUI(ideaId) {
   const el = document.getElementById('vrow_'+ideaId);
   if (el) el.innerHTML = buildVoteRow(ideaId);
+  // also update the vote score bar
+  const { avg, count } = getVoteStats(ideaId);
+  const fill = document.getElementById('vsbar_fill_'+ideaId);
+  const num  = document.getElementById('vsbar_num_'+ideaId);
+  if (fill && num) {
+    fill.style.width = count ? (avg/5*100).toFixed(1)+'%' : '0%';
+    num.textContent  = count ? avg.toFixed(1)+'/5' : '—/5';
+    num.style.color  = count ? 'var(--invest)' : 'var(--fg-3)';
+  }
 }
 
 function refreshAllVoteUI() {
