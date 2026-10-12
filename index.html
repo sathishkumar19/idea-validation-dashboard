@@ -674,6 +674,131 @@ body {
   border-top: 1px solid var(--border);
 }
 
+/* ── VERSION TRACKER ─────────────────────────── */
+.versions {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.versions-h {
+  font-family: var(--ff-h);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+}
+
+.vlog {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.vlog::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border-hi);
+}
+
+.vlog-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
+  padding: 0 0 20px 0;
+  position: relative;
+}
+
+.vlog-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surf-3);
+  border: 2px solid var(--border-hi);
+  margin-top: 5px;
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  justify-self: center;
+  flex-shrink: 0;
+}
+.vlog-item.current .vlog-dot {
+  background: var(--build);
+  border-color: var(--build);
+  box-shadow: 0 0 10px var(--build-dim);
+}
+
+.vlog-body {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.vlog-item.current .vlog-body {
+  border-color: var(--build);
+}
+
+.vlog-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.vlog-ver {
+  font-family: var(--ff-h);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--fg);
+  letter-spacing: -0.2px;
+}
+.vlog-item.current .vlog-ver { color: var(--build); }
+
+.vlog-date {
+  font: 500 11px var(--ff-b);
+  color: var(--fg-3);
+}
+
+.vlog-badge {
+  font: 700 10px var(--ff-b);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--build-dim);
+  color: var(--build);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+.vlog-changes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vlog-changes li {
+  font-size: 12.5px;
+  color: var(--fg-2);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.vlog-changes li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--fg-3);
+}
+.vlog-changes li strong { color: var(--fg); font-weight: 600; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }
@@ -684,12 +809,12 @@ body {
 
   <header class="hdr">
     <div class="hdr-left">
-      <h1>Idea Validation<br>Dashboard <span style="font-size:14px;font-weight:600;color:var(--fg-3);letter-spacing:0">v2</span></h1>
+      <h1>Idea Validation<br>Dashboard <span style="font-size:14px;font-weight:600;color:var(--fg-3);letter-spacing:0">v3.0</span></h1>
       <div class="hdr-tags">
         <span class="tag">📍 Bangalore · Australia · US</span>
         <span class="tag">💰 ₹30L budget</span>
         <span class="tag">👥 Infra / Cloud Architects</span>
-        <span class="tag">7 ideas · 9 criteria</span>
+        <span class="tag">8 ideas · 9 criteria</span>
       </div>
     </div>
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀ Light</button>
@@ -729,7 +854,7 @@ body {
       <div class="stat-l">Build It</div>
     </div>
     <div class="stat" style="--s-color:var(--test)">
-      <div class="stat-n" style="color:var(--test)">3</div>
+      <div class="stat-n" style="color:var(--test)">4</div>
       <div class="stat-l">Test / Pivot</div>
     </div>
     <div class="stat" style="--s-color:var(--park)">
@@ -745,7 +870,7 @@ body {
   <!-- FILTERS -->
   <div class="filters">
     <button class="fb active" onclick="setFilter('all',this)" style="--fb-c:var(--fg-2)">
-      <span class="dot"></span>All 7
+      <span class="dot"></span>All 8
     </button>
     <button class="fb" onclick="setFilter('build',this)" style="--fb-c:var(--build)">
       <span class="dot"></span>Build
@@ -785,13 +910,76 @@ body {
       </div>
       <div class="icard">
         <div class="ieye">Remote work split</div>
-        <p>Top 3 ideas let <strong>Bangalore</strong> own sales and client meetings while <strong>Australia and US</strong> build the platform async. Sports Facility and clinic field sales give only one founder a meaningful role.</p>
+        <p>Top ideas (#3 RegTech and #8 ArivuPalam) let <strong>Bangalore</strong> own sales and client meetings while <strong>Australia and US</strong> build the platform async. Sports Facility and clinic field sales give only one founder a meaningful role.</p>
+      </div>
+      <div class="icard">
+        <div class="ieye">ArivuPalam — Phase 1 wedge</div>
+        <p><strong>ArivuPalam (28/45)</strong> is the team's second testable idea. Founders deliver IT sessions at TN engineering colleges as the first product — no platform needed. The <strong>Project VC Circle</strong> (expert mentors reviewing student intern projects like VCs) is genuinely novel and differentiates from TCS iON and Naan Mudhalvan.</p>
       </div>
     </div>
   </section>
 
+  <!-- VERSION TRACKER -->
+  <section class="versions">
+    <h2 class="versions-h">Version History</h2>
+    <div class="vlog">
+
+      <div class="vlog-item current">
+        <div class="vlog-dot"></div>
+        <div class="vlog-body">
+          <div class="vlog-header">
+            <span class="vlog-ver">v3.0</span>
+            <span class="vlog-badge">Current</span>
+            <span class="vlog-date">October 2026</span>
+          </div>
+          <ul class="vlog-changes">
+            <li><strong>Idea #8 added — ArivuPalam (அறிவுப்பாலம்):</strong> Knowledge Bridge Platform connecting Tamil Nadu colleges, industry and retired experts. Claude 20/35 · Founders 28/45 · Rank 4.</li>
+            <li>Project VC Circle concept: expert professionals mentor student intern projects as "VCs" — most novel differentiator in the set.</li>
+            <li>IT-first pilot plays directly to founders' Cloud/DevOps/SRE skills; near-zero Phase 1 cost.</li>
+            <li>Test/Pivot count updated 3 → 4. Dashboard now tracks 8 ideas.</li>
+            <li>New insight card: ArivuPalam Phase 1 wedge strategy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vlog-item">
+        <div class="vlog-dot"></div>
+        <div class="vlog-body">
+          <div class="vlog-header">
+            <span class="vlog-ver">v2.0</span>
+            <span class="vlog-date">October 2026</span>
+          </div>
+          <ul class="vlog-changes">
+            <li><strong>9-criteria scoring model:</strong> added MOAT and NorthStar / ARR as founder evaluation criteria. Scoring updated to /45 (was /35).</li>
+            <li>All 7 founder validation files re-scored across the two new dimensions.</li>
+            <li>Dashboard re-ranked by 9-criterion founder score. #3 RegTech retained rank 1 (40/45).</li>
+            <li>ITAD pivot for Scrappy raised to 30/45; recognized as a natural bundle with RegTech via DPDP data-erasure certificates.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vlog-item">
+        <div class="vlog-dot"></div>
+        <div class="vlog-body">
+          <div class="vlog-header">
+            <span class="vlog-ver">v1.0</span>
+            <span class="vlog-date">October 2026</span>
+          </div>
+          <ul class="vlog-changes">
+            <li><strong>Initial validation of 7 ideas</strong> across 7 Claude dimensions (/35) and 7 founder criteria (/35).</li>
+            <li>Ideas evaluated: Scrap App, Drone Geofencing, Indian Regulatory SaaS, VC for Colleges, IT/OT for MSMEs, Smart Scheduling, Sports Facility.</li>
+            <li>#3 Regulatory Compliance SaaS emerged as strongest fit (24/35 Claude, top founder score).</li>
+            <li>Five Fatal Questions framework and 3-experiment validation plan for each idea.</li>
+            <li>Portfolio recommendation: RegTech as venture bet, Sports Facility as asset bet.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <footer class="foot">
-    Evaluated October 2026 · v2 · Criteria: Domain Fit, Implementability, Budget Scalability, AI-Native Potential, Target Market, Competitive Landscape, Remote Collaboration, MOAT, NorthStar / ARR
+    Evaluated October 2026 · v3.0 · 8 ideas · Criteria: Domain Fit, Implementability, Budget Scalability, AI-Native Potential, Target Market, Competitive Landscape, Remote Collaboration, MOAT, NorthStar / ARR
   </footer>
 
 </div>
@@ -842,7 +1030,7 @@ const IDEAS = [
     budget:'₹0.5L → pilot  ·  ₹6L → 15-shop cluster  ·  ₹10L → OEM channel  ·  ₹13.5L reserve',
   },
   {
-    id:4, rank:4, s:'park',
+    id:4, rank:5, s:'park',
     name:'Drone Orchestration → Agri Fleet Compliance',
     pitcher:'Sathish', seg:'B2B',
     cs:13, fs:27, pivot:'Pivot: Agri Fleet',
@@ -853,7 +1041,7 @@ const IDEAS = [
     budget:'₹5k experiment only — no further spend until main idea generates revenue',
   },
   {
-    id:5, rank:5, s:'test',
+    id:5, rank:6, s:'test',
     name:'Smart Scheduling → Clinic Queue + AI Front Desk',
     pitcher:'Rajesh', seg:'B2C → B2B',
     cs:17, fs:27, pivot:'Pivot: Clinic AI',
@@ -864,7 +1052,7 @@ const IDEAS = [
     budget:'₹0.1L → manual pilot  ·  ₹4L → automated product  ·  ₹8L → scale (only if pilot lands)',
   },
   {
-    id:6, rank:7, s:'skip',
+    id:6, rank:8, s:'skip',
     name:'VC / Incubation-OS for Tier-2 Colleges',
     pitcher:'Arun', seg:'B2B',
     cs:13, fs:18, pivot:null,
@@ -875,7 +1063,7 @@ const IDEAS = [
     budget:'Zero company spend. Personal angel cheques only, kept separate from the ₹30L startup fund.',
   },
   {
-    id:7, rank:6, s:'invest',
+    id:7, rank:7, s:'invest',
     name:'Sports Facility via Leasing',
     pitcher:'Arun', seg:'B2C',
     cs:23, fs:19, pivot:null,
@@ -884,6 +1072,17 @@ const IDEAS = [
     cr:[1,2,1,1,4,3,1,2,4],
     action:'If pursuing separately: track slot availability on Playo/Hudle for 14 days. Fund with a separate loan or personal money — not from the ₹30L startup budget. Hire a venue GM before signing any lease.',
     budget:'⚠ Budget conflict: ₹70L–1Cr build cost vs ₹30L total. Needs separate funding or a loan.',
+  },
+  {
+    id:8, rank:4, s:'test',
+    name:'ArivuPalam — Knowledge Bridge Platform',
+    pitcher:'Sathish', seg:'B2B / B2G',
+    cs:20, fs:28, pivot:null,
+    cv:'Test it — start as an IT-skills services business, not a platform. Founders deliver the first sessions (Cloud/DevOps/SRE). Build technology only after 10+ paying colleges. The Project VC Circle (expert mentors as "VCs" for student intern projects) is the most novel element.',
+    fv:'Promising fit for Phase 1. The IT-first pilot is a natural extension of cloud/infra/DevOps skills. Near-zero startup cost: founders deliver sessions themselves. All three founders have a role. Non-IT tracks need domain partners the team doesn\'t have yet. Platform only after 10 paying colleges.',
+    cr:[4,3,4,2,3,2,4,3,3],
+    action:'Contact 15 placement officers / IQAC coordinators at Chennai or Coimbatore engineering colleges. Offer a ₹75k, 5-session pilot (Cloud Foundations + DevOps + SRE + Networking + Client-Facing Skills) with an NAAC-formatted feedback report. Get a signed order or written commitment before delivering. Budget: ₹0.',
+    budget:'₹2–3L → content design + microsite + college outreach  ·  ₹8–12L → booking platform + accreditation dashboard + 1 sales hire  ·  Fits inside ₹30L budget if Phase 1 generates revenue',
   },
 ];
 
