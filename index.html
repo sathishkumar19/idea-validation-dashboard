@@ -674,6 +674,222 @@ body {
   border-top: 1px solid var(--border);
 }
 
+/* ── FOUNDER BAR ─────────────────────────────── */
+.founder-bar {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fs-label {
+  font: 700 10.5px var(--ff-b);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+.fs-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.fs-chip {
+  background: var(--surf-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font: 600 12px var(--ff-b);
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.fs-chip:hover { border-color: var(--border-hi); color: var(--fg); }
+.fs-chip.active {
+  background: var(--test-dim);
+  border-color: var(--test);
+  color: var(--test);
+  box-shadow: 0 0 10px rgba(247,183,49,0.15);
+}
+.fs-hint {
+  font: 400 11.5px var(--ff-b);
+  color: var(--fg-3);
+  font-style: italic;
+  margin-left: auto;
+}
+@media (max-width: 540px) { .fs-hint { display: none; } }
+
+/* ── RANKINGS AT A GLANCE ────────────────────── */
+.rankings-section {
+  margin-bottom: 24px;
+}
+.rankings-h {
+  font-family: var(--ff-h);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--fg-2);
+  margin-bottom: 10px;
+}
+.triple-rank {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media (max-width: 620px) {
+  .triple-rank { grid-template-columns: 1fr; }
+}
+.tr-col {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.tr-col.vote-col { border-color: var(--border-hi); }
+.tr-head {
+  padding: 11px 14px 9px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surf-2);
+}
+.tr-col-title {
+  font-family: var(--ff-h);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.1px;
+}
+.tr-col-sub {
+  font: 500 10.5px var(--ff-b);
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+.tr-body { padding: 4px 0; }
+.tr-row {
+  display: grid;
+  grid-template-columns: 20px 8px 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  transition: background 0.12s;
+}
+.tr-row:hover { background: var(--surf-2); }
+.tr-rn {
+  font: 700 10.5px var(--ff-b);
+  color: var(--fg-3);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.tr-row:first-child .tr-rn { color: var(--gold); }
+.tr-row:nth-child(2) .tr-rn,
+.tr-row:nth-child(3) .tr-rn { color: var(--fg-2); }
+.tr-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.tr-name {
+  font: 500 11.5px var(--ff-b);
+  color: var(--fg-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.tr-score {
+  font: 700 11px var(--ff-b);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+.tr-empty {
+  padding: 18px 14px;
+  text-align: center;
+  font: 400 11.5px var(--ff-b);
+  color: var(--fg-3);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── VOTE WIDGET (in card) ───────────────────── */
+.vote-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-hi);
+  flex-wrap: wrap;
+}
+.vote-lbl {
+  font: 700 10px var(--ff-b);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  white-space: nowrap;
+  min-width: 34px;
+}
+.vote-btns { display: flex; gap: 4px; }
+.vote-btn {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-hi);
+  background: var(--surf-2);
+  font: 700 11px var(--ff-b);
+  color: var(--fg-3);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.vote-btn:hover:not(:disabled) {
+  border-color: var(--test);
+  color: var(--test);
+  background: var(--test-dim);
+}
+.vote-btn.mine {
+  background: var(--test-dim);
+  border-color: var(--test);
+  color: var(--test);
+  box-shadow: 0 0 8px rgba(247,183,49,0.2);
+}
+.vote-btn:disabled { opacity: 0.3; cursor: default; }
+.vote-avg-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 30px;
+  margin-left: 2px;
+}
+.vote-avg-n {
+  font: 800 13px var(--ff-h);
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.vote-avg-d { font: 500 9px var(--ff-b); color: var(--fg-3); }
+.vote-founders { display: flex; gap: 3px; margin-left: auto; }
+.fav {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--surf-3);
+  border: 1.5px solid var(--border);
+  font: 700 8px var(--ff-b);
+  color: var(--fg-3);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  cursor: default;
+}
+.fav.voted {
+  background: var(--test-dim);
+  border-color: var(--test);
+  color: var(--test);
+}
+.vote-nf {
+  font: 400 11px var(--ff-b);
+  color: var(--fg-3);
+  font-style: italic;
+}
+
 /* ── VERSION TRACKER ─────────────────────────── */
 .versions {
   margin-top: 40px;
@@ -809,7 +1025,7 @@ body {
 
   <header class="hdr">
     <div class="hdr-left">
-      <h1>Idea Validation<br>Dashboard <span style="font-size:14px;font-weight:600;color:var(--fg-3);letter-spacing:0">v3.0</span></h1>
+      <h1>Idea Validation<br>Dashboard <span style="font-size:14px;font-weight:600;color:var(--fg-3);letter-spacing:0">v3.1</span></h1>
       <div class="hdr-tags">
         <span class="tag">📍 Bangalore · Australia · US</span>
         <span class="tag">💰 ₹30L budget</span>
@@ -819,6 +1035,19 @@ body {
     </div>
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀ Light</button>
   </header>
+
+  <!-- FOUNDER SELECTOR -->
+  <div class="founder-bar">
+    <span class="fs-label">Vote as</span>
+    <div class="fs-chips">
+      <button class="fs-chip" data-f="Sathish" onclick="selectFounder('Sathish')">Sathish</button>
+      <button class="fs-chip" data-f="Arun" onclick="selectFounder('Arun')">Arun</button>
+      <button class="fs-chip" data-f="Sampath" onclick="selectFounder('Sampath')">Sampath</button>
+      <button class="fs-chip" data-f="Rajesh" onclick="selectFounder('Rajesh')">Rajesh</button>
+      <button class="fs-chip" data-f="Ramesh" onclick="selectFounder('Ramesh')">Ramesh</button>
+    </div>
+    <span class="fs-hint" id="fsHint">Pick your name, then rate each idea 1–5 on gut feel</span>
+  </div>
 
   <!-- HERO -->
   <div class="hero">
@@ -846,6 +1075,12 @@ body {
       </div>
     </div>
   </div>
+
+  <!-- RANKINGS AT A GLANCE -->
+  <section class="rankings-section">
+    <div class="rankings-h">Rankings at a Glance</div>
+    <div id="tripleRank" class="triple-rank"></div>
+  </section>
 
   <!-- STAT TILES -->
   <div class="stats">
@@ -928,8 +1163,23 @@ body {
         <div class="vlog-dot"></div>
         <div class="vlog-body">
           <div class="vlog-header">
-            <span class="vlog-ver">v3.0</span>
+            <span class="vlog-ver">v3.1</span>
             <span class="vlog-badge">Current</span>
+            <span class="vlog-date">October 2026</span>
+          </div>
+          <ul class="vlog-changes">
+            <li><strong>Founder voting system:</strong> each founder picks their name and rates every idea 1–5 on gut feel ("hunch score"). Votes persist in localStorage per device.</li>
+            <li><strong>Rankings at a Glance widget</strong> added at top — shows all 8 ideas ranked by three independent systems side by side: Claude Score, Founder Fit criteria, and Team Vote average.</li>
+            <li>Vote widget on every idea card shows per-founder avatar indicators, current average, and vote count.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vlog-item">
+        <div class="vlog-dot"></div>
+        <div class="vlog-body">
+          <div class="vlog-header">
+            <span class="vlog-ver">v3.0</span>
             <span class="vlog-date">October 2026</span>
           </div>
           <ul class="vlog-changes">
@@ -937,7 +1187,6 @@ body {
             <li>Project VC Circle concept: expert professionals mentor student intern projects as "VCs" — most novel differentiator in the set.</li>
             <li>IT-first pilot plays directly to founders' Cloud/DevOps/SRE skills; near-zero Phase 1 cost.</li>
             <li>Test/Pivot count updated 3 → 4. Dashboard now tracks 8 ideas.</li>
-            <li>New insight card: ArivuPalam Phase 1 wedge strategy.</li>
           </ul>
         </div>
       </div>
@@ -979,7 +1228,7 @@ body {
   </section>
 
   <footer class="foot">
-    Evaluated October 2026 · v3.0 · 8 ideas · Criteria: Domain Fit, Implementability, Budget Scalability, AI-Native Potential, Target Market, Competitive Landscape, Remote Collaboration, MOAT, NorthStar / ARR
+    Evaluated October 2026 · v3.1 · 8 ideas · Criteria: Domain Fit, Implementability, Budget Scalability, AI-Native Potential, Target Market, Competitive Landscape, Remote Collaboration, MOAT, NorthStar / ARR
   </footer>
 
 </div>
@@ -1154,6 +1403,7 @@ function buildCard(idea) {
           <span class="sbar-num" style="color:${cc}">${idea.fs}/45</span>
         </div>
       </div>
+      <div class="vote-row" id="vrow_${idea.id}"></div>
     </div>
     <div class="chevron">▾</div>
   </div>
@@ -1209,5 +1459,178 @@ function toggleTheme() {
 (function(){
   const btn = document.getElementById('themeBtn');
   btn.textContent = matchMedia('(prefers-color-scheme: dark)').matches ? '☀ Light' : '☾ Dark';
+})();
+
+/* ── VOTING SYSTEM ────────────────────────────────────────── */
+
+const FOUNDERS = ['Sathish','Arun','Sampath','Rajesh','Ramesh'];
+let currentFounder = null;
+
+const IDEA_SHORT = {
+  1: 'RegTech SaaS',
+  2: 'ITAD (Scrappy)',
+  3: 'IT/OT MSMEs',
+  4: 'Drone→Agri',
+  5: 'Clinic Queue AI',
+  6: 'VC for Colleges',
+  7: 'Sports Facility',
+  8: 'ArivuPalam',
+};
+
+function loadVotes() {
+  try { return JSON.parse(localStorage.getItem('iv_votes_v3') || '{}'); }
+  catch { return {}; }
+}
+
+function saveVotes(v) {
+  try { localStorage.setItem('iv_votes_v3', JSON.stringify(v)); } catch {}
+}
+
+function getVoteStats(ideaId) {
+  const v = loadVotes();
+  const ideaVotes = v[ideaId] || {};
+  const scores = Object.values(ideaVotes).map(Number);
+  const avg = scores.length ? scores.reduce((a,b) => a+b, 0) / scores.length : 0;
+  return { avg, count: scores.length, voters: Object.keys(ideaVotes) };
+}
+
+function castVote(ideaId, score) {
+  if (!currentFounder) {
+    document.getElementById('fsHint').textContent = '⬆ Pick your name first to vote';
+    document.getElementById('fsHint').style.color = 'var(--test)';
+    return;
+  }
+  const v = loadVotes();
+  if (!v[ideaId]) v[ideaId] = {};
+  if (v[ideaId][currentFounder] === score) {
+    delete v[ideaId][currentFounder]; // toggle off
+  } else {
+    v[ideaId][currentFounder] = score;
+  }
+  saveVotes(v);
+  refreshVoteUI(ideaId);
+  renderTripleRank();
+}
+
+function selectFounder(name) {
+  currentFounder = name;
+  try { localStorage.setItem('iv_founder', name); } catch {}
+  document.querySelectorAll('.fs-chip').forEach(c =>
+    c.classList.toggle('active', c.dataset.f === name)
+  );
+  const hint = document.getElementById('fsHint');
+  hint.textContent = `Voting as ${name} — rate each idea 1 (nope) to 5 (let's go!)`;
+  hint.style.color = 'var(--test)';
+  refreshAllVoteUI();
+}
+
+function buildVoteRow(ideaId) {
+  const v = loadVotes();
+  const myVote = currentFounder ? (v[ideaId]?.[currentFounder] || 0) : 0;
+  const { avg, count, voters } = getVoteStats(ideaId);
+
+  const btns = [1,2,3,4,5].map(i => {
+    const labels = ['','Nope','Meh','Maybe','Likely','Let's go!'];
+    return `<button class="vote-btn${myVote===i?' mine':''}"
+      onclick="castVote(${ideaId},${i})"
+      title="${labels[i]}"
+      ${!currentFounder ? 'disabled' : ''}>${i}</button>`;
+  }).join('');
+
+  const avgDisplay = count
+    ? `<div class="vote-avg-wrap"><span class="vote-avg-n">${avg.toFixed(1)}</span><span class="vote-avg-d">${count}/5 voted</span></div>`
+    : `<div class="vote-avg-wrap"><span class="vote-avg-n" style="color:var(--fg-3)">—</span><span class="vote-avg-d">no votes</span></div>`;
+
+  const avatars = FOUNDERS.map(f => {
+    const hasVoted = voters.includes(f);
+    const fv = v[ideaId]?.[f];
+    return `<span class="fav${hasVoted?' voted':''}" title="${f}: ${hasVoted ? fv+'/5' : 'not voted'}">${f[0]}</span>`;
+  }).join('');
+
+  return `<span class="vote-lbl">Hunch</span>
+    <div class="vote-btns">${btns}</div>
+    ${avgDisplay}
+    <div class="vote-founders">${avatars}</div>`;
+}
+
+function refreshVoteUI(ideaId) {
+  const el = document.getElementById('vrow_'+ideaId);
+  if (el) el.innerHTML = buildVoteRow(ideaId);
+}
+
+function refreshAllVoteUI() {
+  IDEAS.forEach(idea => refreshVoteUI(idea.id));
+}
+
+function renderTripleRank() {
+  const v = loadVotes();
+  const sColor = id => ({ build:'var(--build)',test:'var(--test)',park:'var(--park)',skip:'var(--skip)',invest:'var(--invest)' })[IDEAS.find(x=>x.id===id).s];
+
+  const getVoteAvg = id => {
+    const scores = Object.values(v[id] || {}).map(Number);
+    return scores.length ? scores.reduce((a,b)=>a+b,0)/scores.length : -1;
+  };
+  const getVoteCount = id => Object.keys(v[id] || {}).length;
+
+  const byClause  = [...IDEAS].sort((a,b) => b.cs - a.cs);
+  const byFounder = [...IDEAS].sort((a,b) => b.fs - a.fs);
+  const byVote    = [...IDEAS].sort((a,b) => {
+    const da = getVoteAvg(a.id), db = getVoteAvg(b.id);
+    if (da === -1 && db === -1) return 0;
+    if (da === -1) return 1;
+    if (db === -1) return -1;
+    if (Math.abs(da-db) > 0.001) return db-da;
+    return getVoteCount(b.id) - getVoteCount(a.id);
+  });
+
+  const makeRows = (ideas, key) => ideas.map((idea,i) => {
+    const score = key === 'cs' ? idea.cs+'/35'
+                : key === 'fs' ? idea.fs+'/45'
+                : (() => { const a=getVoteAvg(idea.id); return a>=0 ? a.toFixed(1)+'/5' : '—'; })();
+    return `<div class="tr-row">
+      <span class="tr-rn">${String(i+1).padStart(2,'0')}</span>
+      <span class="tr-dot" style="background:${sColor(idea.id)}"></span>
+      <span class="tr-name">${IDEA_SHORT[idea.id]}</span>
+      <span class="tr-score">${score}</span>
+    </div>`;
+  }).join('');
+
+  const hasAnyVote = IDEAS.some(idea => getVoteAvg(idea.id) >= 0);
+
+  document.getElementById('tripleRank').innerHTML = `
+    <div class="tr-col">
+      <div class="tr-head">
+        <div class="tr-col-title">Claude Score</div>
+        <div class="tr-col-sub">Idea strength · /35</div>
+      </div>
+      <div class="tr-body">${makeRows(byClause,'cs')}</div>
+    </div>
+    <div class="tr-col">
+      <div class="tr-head">
+        <div class="tr-col-title">Founder Fit</div>
+        <div class="tr-col-sub">Team-criteria score · /45</div>
+      </div>
+      <div class="tr-body">${makeRows(byFounder,'fs')}</div>
+    </div>
+    <div class="tr-col vote-col">
+      <div class="tr-head">
+        <div class="tr-col-title">Team Vote</div>
+        <div class="tr-col-sub">Gut-feel hunch · avg /5</div>
+      </div>
+      <div class="tr-body">${hasAnyVote
+        ? makeRows(byVote,'vote')
+        : '<div class="tr-empty">No hunch votes yet.<br>Pick your name above and rate ideas below.</div>'
+      }</div>
+    </div>`;
+}
+
+/* ── INIT ─────────────────────────────────────────────────── */
+(function initVoting() {
+  try {
+    const saved = localStorage.getItem('iv_founder');
+    if (saved && FOUNDERS.includes(saved)) selectFounder(saved);
+  } catch {}
+  refreshAllVoteUI();
+  renderTripleRank();
 })();
 </script>
